@@ -1,0 +1,74 @@
+<div class="container">
+  <form #form="ngForm" (ngSubmit)="addBook(form.value)">
+
+    <div class="md-form">
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="bookName" id="bookName" placeholder="Enter Book Name" ngModel>
+      </div>
+    </div>
+    <div class="md-form">
+      <div class="row">
+          <div class="col">
+              <input type="text" class="form-control" name="authorName" [(ngModel)]="authorAdded" >
+            </div>
+            <div class="col">
+                <a class="input-group-text btn waves-effect" (click)="addAuthors()" data-toggle="modal" data-target="#authorModal"
+                    style="background-color:#ecb535; color: black;">Add Authors</a>
+            </div>
+      </div>
+      </div>
+    <div class="md-form">
+      <div class="col-sm-10">
+        <input class="form-control" name="publishDate" type="date" id="publishDate" placeholder="Enter Publish Date" ngModel>
+      </div>
+    </div>
+    <div class="md-form">
+      <div class="col-sm-10">
+        <input type="file" id="file" name="files" (change)="onFileSelected($event)">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-block" style="background-color:#ecb535; color: black;" >Resgister your Book</button>
+      </div>
+    </div>
+  </form>
+
+
+  <div class="modal" id="authorModal" tabindex="-1">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header" style="background-color:#ecb535; color: black;">
+                  <h5 class="modal-title">Add Authors</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span>&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <!-- <a>  {{el.authorName}}   </a>    -->
+
+                  <form>
+                      <div class="form-check" *ngFor="let el of getAllAuthors">
+                          <input class="form-check-input" (change)="addAuthorInArray(el, $event.target.checked)"
+                              name="{{ el.authorName }}" type="checkbox" id="{{el.authorName}}">
+                          {{el.authorName}}
+                      </div>
+                      <button (click)="addAuthorModel()" type="submit" data-dismiss="modal" aria-label="Close"
+                          class="btn my-4 btn-block" style="background-color:#ecb535; color: black;">Add
+                          Authors</button>
+                  </form>
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+
+
+
+
+
+
+</div>  
+
+

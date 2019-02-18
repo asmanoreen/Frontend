@@ -1,0 +1,50 @@
+<div class="container">
+
+    <form (ngSubmit)="searchText(searchItem)" class="input-group md-form form-sm form-2 pl-0">
+      <input style="margin-top:40px;" class="form-control lime-border" type="text" [(ngModel)]="searchItem" name="searchItem"
+        placeholder="Search" aria-label="Search">
+      <i style="margin-top:40px;" class="fas fa-search" aria-hidden="true"></i>
+    </form>
+  
+    <table mdbTable class="bookTable">
+      <thead class="bookTableHearder">
+        <tr>
+          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody class="bookTableBody">
+  
+        <tr *ngFor="let el of elements | bookfilter : searchItem ; ">
+          <td  scope="row">{{el.authorId}}</td>
+          <td >{{el.authorName}}</td>
+          <td >{{el.dateOfBirth}}</td>
+          <td >{{el.placeOfBirth}}</td>
+          <td >
+            <span *ngFor="let ele of el.Tasks"> 
+              <b> {{ele.bookName}}, </b>
+            </span> 
+          </td>
+          <td >
+            <button type="button" (click)="deleteAuthor(el.authorId)"   class="btn tabletbn">Delete</button>
+            <button type="button" (click)="updateAuthor(el.authorId)"   class="btn tabletbn">Update</button>
+            <button type="button" (click)="viewAuthor(el.authorId)"     class="btn tabletbn">View</button>
+          </td>
+        </tr>
+      </tbody> 
+  
+      <tfoot class="bookTableFooter">
+        <tr>
+          <td colspan="6">
+              <ul class="pagination" style="margin-left:475px;">
+                  <li class="page-item"><button class="page-link" [disabled]="!disablePreviousbtn()" (click)="getPreviousRecord(pageLimit)" >Previous</button></li>
+                  <li class="page-item"><button class="page-link" [disabled]="!disableNextbtn()"     (click)="getNextRecord(pageLimit)">Next</button></li>
+              </ul>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  
+    <button type="button" (click)="addAuthor()" class="btn btn-block addBookbtn">Add Author</button>
+
+  
+  </div> 

@@ -1,0 +1,31 @@
+<div class="container">
+    <form  #form="ngForm" (ngSubmit)="updateAuthorform(form.value)" *ngFor="let el of authorRecord">
+      <div class="md-form">
+        <div class="col-sm-10">
+          <input type="text" class="form-control"   name="authorName" [(ngModel)]="el.authorName">
+      </div>
+      </div>
+      <div class="md-form">
+          <div class="col-sm-10">
+              <input class="form-control" name="dateOfBirth" type="text" [(ngModel)]="el.dateOfBirth">
+            </div>
+        </div>
+        <div class="md-form">
+            <div class="col-sm-10">
+                <input class="form-control" name="placeOfBirth" type="text" [(ngModel)]="el.placeOfBirth">
+              </div>
+          </div>
+        
+          <div class="md-form">
+            <div class="col-sm-10">
+              <input type="file" id="file" name="files" (change)="onFileSelected($event)">
+            </div>
+          </div>
+
+      <div class="md-form">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-block" style="background-color:#ecb535; color: black;">Update your Book</button>
+        </div>
+      </div>
+    </form>
+</div> 
